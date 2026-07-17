@@ -1,0 +1,2 @@
+import { SiteHeader } from "../../components/site-header";
+export default function Discover(){return <><SiteHeader/><main className="mx-auto max-w-7xl px-6 py-12"><p className="font-medium text-brand-700">Discovery</p><h1 className="mt-2 text-3xl font-bold">Profiles aligned to your preferences</h1><div className="glass mt-8 rounded-2xl p-6 text-slate-600">Complete your profile and preferences to unlock secure, verified recommendations. The discovery API supports religion, city, verification, pagination and safe server-side filtering.</div></main></>}

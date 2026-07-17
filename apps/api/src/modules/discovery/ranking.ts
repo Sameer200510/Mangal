@@ -1,0 +1,2 @@
+/** Explainable baseline; replace weights with monitored ML/rules configuration, never infer protected traits. */
+export function compatibilityScore(input: { preferenceMatches: number; preferenceTotal: number; verified: boolean; recentActivityDays: number }) { const preference = input.preferenceTotal ? input.preferenceMatches / input.preferenceTotal : 0; const verification = input.verified ? 0.15 : 0; const activity = Math.max(0, 0.1 - input.recentActivityDays * 0.01); return Math.round(Math.min(1, preference * 0.75 + verification + activity) * 100); }

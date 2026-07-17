@@ -1,0 +1,422 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  MODERATOR
+  SUPPORT
+  BRIDE
+  GROOM
+  PARENT
+  PANDIT
+  ORGANIZER
+}
+
+enum VerificationStatus {
+  PENDING
+  IN_REVIEW
+  APPROVED
+  REJECTED
+  EXPIRED
+}
+
+enum AccountStatus {
+  ACTIVE
+  SUSPENDED
+  DELETED
+}
+
+enum InterestStatus {
+  PENDING
+  ACCEPTED
+  DECLINED
+  WITHDRAWN
+  EXPIRED
+}
+
+enum SwipeType {
+  LIKE
+  PASS
+  SUPER_LIKE
+}
+
+enum MessageType {
+  TEXT
+  IMAGE
+  FILE
+  VOICE
+  SYSTEM
+}
+
+enum BookingStatus {
+  REQUESTED
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+  REFUNDED
+}
+
+enum PaymentStatus {
+  PENDING
+  AUTHORIZED
+  PAID
+  FAILED
+  REFUNDED
+  PARTIAL_REFUND
+}
+
+enum SubscriptionTier {
+  FREE
+  SILVER
+  GOLD
+  DIAMOND
+}
+
+enum ReportStatus {
+  OPEN
+  REVIEWING
+  RESOLVED
+  DISMISSED
+}
+
+model User {
+  id                 String            @id @default(uuid()) @db.Uuid
+  email              String?           @unique
+  phone              String?           @unique
+  passwordHash       String?
+  role               Role
+  status             AccountStatus     @default(ACTIVE)
+  emailVerifiedAt    DateTime?
+  phoneVerifiedAt    DateTime?
+  twoFactorEnabled   Boolean           @default(false)
+  lastLoginAt        DateTime?
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+  profile            Profile?
+  sessions           Session[]
+  identities         OAuthIdentity[]
+  serviceProvider    ServiceProvider?  @relation("providerOwner")
+  bookings           Booking[]
+  payments           Payment[]
+  sentInterests      Interest[]        @relation("sentInterests")
+  receivedInterests Interest[]        @relation("receivedInterests")
+  swipes             Swipe[]
+  memberships        Membership[]
+  notifications      Notification[]
+  reportsMade        Report[]          @relation("reportsMade")
+  auditLogs          AuditLog[]
+
+  @@index([role, status])
+}
+
+model Session {
+  id               String   @id @default(uuid()) @db.Uuid
+  userId           String   @db.Uuid
+  refreshTokenHash String   @unique
+  ipHash           String?
+  userAgent        String?
+  expiresAt        DateTime
+  revokedAt        DateTime?
+  createdAt        DateTime @default(now())
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, expiresAt])
+}
+
+model OAuthIdentity {
+  id                String @id @default(uuid()) @db.Uuid
+  userId            String @db.Uuid
+  provider          String
+  providerAccountId String
+  user              User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Profile {
+  id                   String                 @id @default(uuid()) @db.Uuid
+  userId               String                 @unique @db.Uuid
+  slug                 String                 @unique
+  firstName            String
+  lastName             String?
+  birthDate            DateTime
+  gender               String
+  bio                  String?
+  heightCm             Int?
+  religion             String?
+  caste                String?
+  subCaste             String?
+  gotra                String?
+  manglik              String?
+  maritalStatus        String?
+  education            String?
+  occupation           String?
+  annualIncome         Int?
+  country              String
+  state                String?
+  city                 String?
+  languages            String[]
+  diet                 String?
+  smoking              String?
+  drinking             String?
+  familyType           String?
+  profileVisibility    Boolean                @default(true)
+  verificationStatus   VerificationStatus     @default(PENDING)
+  createdAt            DateTime               @default(now())
+  updatedAt            DateTime               @updatedAt
+  user                 User                   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  photos               Media[]
+  preferences          PartnerPreference?
+  documents            VerificationDocument[]
+  sentMessages         Message[]              @relation("sentMessages")
+  memberConversations  ConversationMember[]
+  receivedReports      Report[]               @relation("reportedProfile")
+
+  @@index([gender, country, state, city])
+  @@index([religion, caste])
+  @@index([birthDate])
+  @@index([verificationStatus, profileVisibility])
+}
+
+model PartnerPreference {
+  id               String  @id @default(uuid()) @db.Uuid
+  profileId        String  @unique @db.Uuid
+  genders          String[]
+  minAge           Int
+  maxAge           Int
+  minHeightCm      Int?
+  maxHeightCm      Int?
+  religions        String[]
+  castes           String[]
+  countries        String[]
+  educationLevels  String[]
+  occupations      String[]
+  manglikAccepted  String[]
+  profile          Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+}
+
+model Media {
+  id          String   @id @default(uuid()) @db.Uuid
+  profileId   String   @db.Uuid
+  objectKey   String   @unique
+  mimeType    String
+  sizeBytes   Int
+  isPrimary   Boolean  @default(false)
+  isApproved  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  profile     Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@index([profileId, isApproved])
+}
+
+model VerificationDocument {
+  id                String             @id @default(uuid()) @db.Uuid
+  profileId         String             @db.Uuid
+  type              String
+  encryptedObjectKey String
+  status            VerificationStatus @default(PENDING)
+  reviewedBy        String?            @db.Uuid
+  reviewedAt        DateTime?
+  createdAt         DateTime           @default(now())
+  profile           Profile            @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@index([profileId, status])
+}
+
+model Interest {
+  id         String         @id @default(uuid()) @db.Uuid
+  senderId   String         @db.Uuid
+  receiverId String         @db.Uuid
+  status     InterestStatus @default(PENDING)
+  message    String?
+  expiresAt  DateTime?
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime       @updatedAt
+  sender     User           @relation("sentInterests", fields: [senderId], references: [id], onDelete: Cascade)
+  receiver   User           @relation("receivedInterests", fields: [receiverId], references: [id], onDelete: Cascade)
+
+  @@unique([senderId, receiverId])
+  @@index([receiverId, status, createdAt])
+}
+
+model Swipe {
+  id              String    @id @default(uuid()) @db.Uuid
+  userId          String    @db.Uuid
+  targetProfileId String    @db.Uuid
+  type            SwipeType
+  createdAt       DateTime  @default(now())
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, targetProfileId])
+  @@index([userId, createdAt])
+}
+
+model Conversation {
+  id        String               @id @default(uuid()) @db.Uuid
+  createdAt DateTime             @default(now())
+  updatedAt DateTime             @updatedAt
+  members   ConversationMember[]
+  messages  Message[]
+}
+
+model ConversationMember {
+  conversationId String       @db.Uuid
+  profileId      String       @db.Uuid
+  joinedAt       DateTime     @default(now())
+  lastReadAt     DateTime?
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  profile        Profile      @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@id([conversationId, profileId])
+  @@index([profileId, joinedAt])
+}
+
+model Message {
+  id                String       @id @default(uuid()) @db.Uuid
+  conversationId    String       @db.Uuid
+  senderProfileId   String       @db.Uuid
+  type              MessageType  @default(TEXT)
+  body              String?
+  objectKey         String?
+  deletedAt         DateTime?
+  createdAt         DateTime     @default(now())
+  conversation      Conversation  @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  sender            Profile       @relation("sentMessages", fields: [senderProfileId], references: [id])
+
+  @@index([conversationId, createdAt])
+}
+
+model ServiceProvider {
+  id                 String             @id @default(uuid()) @db.Uuid
+  ownerId            String             @unique @db.Uuid
+  type               String
+  name               String
+  description        String?
+  city               String
+  verificationStatus VerificationStatus @default(PENDING)
+  createdAt          DateTime           @default(now())
+  owner              User               @relation("providerOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  services           WeddingService[]
+}
+
+model WeddingService {
+  id          String          @id @default(uuid()) @db.Uuid
+  providerId  String          @db.Uuid
+  category    String
+  name        String
+  description String?
+  basePrice   Int
+  currency    String          @default("INR")
+  active      Boolean         @default(true)
+  provider    ServiceProvider @relation(fields: [providerId], references: [id], onDelete: Cascade)
+  bookings    Booking[]
+
+  @@index([category, active])
+}
+
+model Booking {
+  id            String        @id @default(uuid()) @db.Uuid
+  serviceId     String        @db.Uuid
+  customerId    String        @db.Uuid
+  scheduledFor  DateTime
+  status        BookingStatus @default(REQUESTED)
+  quotedAmount  Int
+  currency      String        @default("INR")
+  createdAt     DateTime      @default(now())
+  service       WeddingService @relation(fields: [serviceId], references: [id])
+  customer      User          @relation(fields: [customerId], references: [id])
+  payments      Payment[]
+
+  @@index([customerId, status])
+  @@index([serviceId, scheduledFor])
+}
+
+model Payment {
+  id                String        @id @default(uuid()) @db.Uuid
+  bookingId         String?       @db.Uuid
+  userId            String        @db.Uuid
+  provider          String
+  providerPaymentId String?       @unique
+  amount            Int
+  currency          String
+  status            PaymentStatus @default(PENDING)
+  idempotencyKey    String        @unique
+  createdAt         DateTime      @default(now())
+  booking           Booking?      @relation(fields: [bookingId], references: [id])
+  user              User          @relation(fields: [userId], references: [id])
+
+  @@index([userId, status, createdAt])
+}
+
+model Plan {
+  id           String           @id @default(uuid()) @db.Uuid
+  code         SubscriptionTier @unique
+  name         String
+  price        Int
+  currency     String           @default("INR")
+  durationDays Int
+  entitlements Json
+  active       Boolean          @default(true)
+  memberships  Membership[]
+}
+
+model Membership {
+  id        String   @id @default(uuid()) @db.Uuid
+  userId    String   @db.Uuid
+  planId    String   @db.Uuid
+  startsAt  DateTime
+  endsAt    DateTime
+  status    String
+  user      User     @relation(fields: [userId], references: [id])
+  plan      Plan     @relation(fields: [planId], references: [id])
+
+  @@index([userId, status, endsAt])
+}
+
+model Notification {
+  id        String   @id @default(uuid()) @db.Uuid
+  userId    String   @db.Uuid
+  type      String
+  payload   Json
+  readAt    DateTime?
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, readAt, createdAt])
+}
+
+model Report {
+  id         String       @id @default(uuid()) @db.Uuid
+  reporterId String       @db.Uuid
+  profileId  String       @db.Uuid
+  reason     String
+  details    String?
+  status     ReportStatus @default(OPEN)
+  createdAt  DateTime     @default(now())
+  reporter   User         @relation("reportsMade", fields: [reporterId], references: [id])
+  profile    Profile      @relation("reportedProfile", fields: [profileId], references: [id])
+
+  @@index([status, createdAt])
+}
+
+model AuditLog {
+  id         String   @id @default(uuid()) @db.Uuid
+  actorId    String?  @db.Uuid
+  action     String
+  entityType String
+  entityId   String?
+  ipHash     String?
+  metadata   Json?
+  createdAt  DateTime @default(now())
+  actor      User?    @relation(fields: [actorId], references: [id])
+
+  @@index([entityType, entityId])
+  @@index([actorId, createdAt])
+}

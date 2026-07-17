@@ -1,0 +1,11 @@
+import { createHash, randomBytes } from "node:crypto";
+import { SignJWT, jwtVerify } from "jose";
+import { env } from "../config.js";
+export type TokenClaims = { sub: string; role: string; sessionId: string };
+const accessKey = new TextEncoder().encode(env.JWT_ACCESS_SECRET); const refreshKey = new TextEncoder().encode(env.JWT_REFRESH_SECRET);
+export const hashToken = (value: string) => createHash("sha256").update(value).digest("hex");
+export const newOpaqueToken = () => randomBytes(48).toString("base64url");
+export const signAccessToken = (claims: TokenClaims) => new SignJWT({ role: claims.role, sessionId: claims.sessionId }).setProtectedHeader({ alg: "HS256" }).setSubject(claims.sub).setIssuedAt().setExpirationTime("15m").sign(accessKey);
+export const signRefreshToken = (claims: TokenClaims) => new SignJWT({ role: claims.role, sessionId: claims.sessionId }).setProtectedHeader({ alg: "HS256" }).setSubject(claims.sub).setIssuedAt().setExpirationTime("30d").sign(refreshKey);
+export const verifyAccessToken = async (token: string) => (await jwtVerify(token, accessKey)).payload as unknown as TokenClaims;
+export const verifyRefreshToken = async (token: string) => (await jwtVerify(token, refreshKey)).payload as unknown as TokenClaims;

@@ -1,0 +1,1 @@
+export default function Terms(){return <main className="mx-auto max-w-3xl p-8"><h1 className="text-3xl font-bold">Terms of service</h1><p className="mt-5 text-slate-600">Use is limited to adults seeking lawful matrimonial and wedding services. Final terms require jurisdiction-specific legal review before launch.</p></main>}

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useAuth } from '../../context/AuthContext';
+import { AipanCorner, AipanChauki, TehriNathEmblem, HimalayanSilhouettes } from '../../components/AipanPatterns';
 
 export default function DiscoverPage() {
   const { user, token } = useAuth();
@@ -116,14 +117,17 @@ export default function DiscoverPage() {
   const activeCandidate = deck[currentIndex];
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg-primary)', padding: '30px 20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg-primary)', padding: '30px 20px', display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
       
+      {/* Mountain Silhouettes */}
+      <HimalayanSilhouettes />
+
       {/* Header bar */}
-      <div style={{ width: '100%', maxWidth: '520px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+      <div style={{ width: '100%', maxWidth: '500px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', position: 'relative', zIndex: 2 }}>
         <Link href="/matches" style={{ color: 'var(--gold)', textDecoration: 'none', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
           ← Recommendations
         </Link>
-        <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+        <div style={{ fontSize: '0.85rem', color: '#FAF8F2', background: 'rgba(122,31,29,0.4)', padding: '3px 12px', borderRadius: '12px', border: '1px solid rgba(250,248,242,0.2)' }}>
           {deck.length > 0 ? `${currentIndex + 1} of ${deck.length}` : 'Empty'}
         </div>
         <Link href="/interests" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '0.9rem' }}>
@@ -133,29 +137,35 @@ export default function DiscoverPage() {
 
       {/* Loading state */}
       {loading && (
-        <div style={{ textAlign: 'center', marginTop: '100px', color: 'var(--text-secondary)' }}>
-          <div style={{ fontSize: '2.5rem', marginBottom: '14px', animation: 'spin 2s linear infinite' }}>👑</div>
-          <p>Shuffling royal prospective profiles...</p>
+        <div style={{ textAlign: 'center', marginTop: '100px', color: 'var(--text-secondary)', position: 'relative', zIndex: 2 }}>
+          <div style={{ marginBottom: '16px' }}>
+            <AipanChauki size={90} className="aipan-spin" />
+          </div>
+          <p style={{ color: '#FAF8F2' }}>Shuffling prospective Devbhoomi profiles...</p>
         </div>
       )}
 
       {/* Active Card Stack */}
       {!loading && activeCandidate && (
         <div
-          className="card"
+          className="card aipan-card"
           style={{
             width: '100%',
-            maxWidth: '480px',
+            maxWidth: '460px',
             padding: 0,
             overflow: 'hidden',
-            borderRadius: '16px',
-            border: '1px solid var(--border-color)',
-            boxShadow: '0 20px 40px rgba(0,0,0,0.6)',
+            borderRadius: '18px',
+            border: '1.5px solid rgba(250, 248, 242, 0.25)',
+            boxShadow: '0 25px 50px rgba(0,0,0,0.8), 0 0 35px rgba(122,31,29,0.45)',
             position: 'relative',
+            zIndex: 2,
           }}
         >
+          <AipanCorner position="top-left" />
+          <AipanCorner position="top-right" />
+
           {/* Main Photo with Gradient */}
-          <div style={{ position: 'relative', height: '440px', width: '100%', background: '#0e0e11' }}>
+          <div style={{ position: 'relative', height: '420px', width: '100%', background: '#0e0e11' }}>
             <img
               src={
                 activeCandidate.photos?.find((p: any) => p.isPrimary)?.fileUrl ||
@@ -173,44 +183,45 @@ export default function DiscoverPage() {
             />
 
             {/* Shield & Completeness */}
-            <div style={{ position: 'absolute', top: '16px', left: '16px', display: 'flex', gap: '8px' }}>
+            <div style={{ position: 'absolute', top: '16px', left: '16px', display: 'flex', gap: '8px', zIndex: 3 }}>
               {activeCandidate.user?.isVerified && (
-                <span style={{ background: 'rgba(16,185,129,0.9)', color: '#fff', padding: '4px 10px', borderRadius: '12px', fontSize: '0.75rem', fontWeight: 'bold' }}>
+                <span style={{ background: 'rgba(16,185,129,0.92)', color: '#fff', padding: '4px 10px', borderRadius: '12px', fontSize: '0.75rem', fontWeight: 'bold' }}>
                   ✓ Royal Verified
                 </span>
               )}
+              <span className="badge badge-pahadi">Pahadi Matrimony</span>
             </div>
 
             {/* Profile Core Overlay */}
-            <div style={{ position: 'absolute', bottom: '20px', left: '20px', right: '20px' }}>
-              <h2 style={{ margin: 0, fontSize: '1.8rem', color: '#fff' }}>
+            <div style={{ position: 'absolute', bottom: '18px', left: '20px', right: '20px' }}>
+              <h2 style={{ margin: 0, fontSize: '1.8rem', color: '#FAF8F2' }}>
                 {activeCandidate.user?.firstName} {activeCandidate.user?.lastName}, {new Date().getFullYear() - new Date(activeCandidate.dateOfBirth).getFullYear()}
               </h2>
-              <p style={{ margin: '6px 0 0 0', color: 'rgba(255,255,255,0.85)', fontSize: '0.95rem' }}>
-                📍 {activeCandidate.city || 'Delhi'}, {activeCandidate.country} • 📏 {activeCandidate.heightCm} cm
+              <p style={{ margin: '4px 0 0 0', color: 'rgba(255,255,255,0.85)', fontSize: '0.95rem' }}>
+                📍 {activeCandidate.city || 'Uttarakhand'}, {activeCandidate.country} • 📏 {activeCandidate.heightCm} cm
               </p>
             </div>
           </div>
 
           {/* Details Section */}
-          <div style={{ padding: '24px', background: 'var(--bg-card)' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '16px' }}>
+          <div style={{ padding: '22px', background: 'var(--bg-card)' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', fontSize: '0.88rem', color: 'var(--text-secondary)', marginBottom: '14px' }}>
               <div>🎓 {activeCandidate.highestEducation || 'Graduate'}</div>
               <div>💼 {activeCandidate.occupation || 'Professional'}</div>
-              <div>🕉️ {activeCandidate.religion} ({activeCandidate.caste || 'Any'})</div>
+              <div>🕉️ {activeCandidate.religion} ({activeCandidate.caste || 'Kumaon/Garhwal'})</div>
               <div>🥗 {activeCandidate.diet}</div>
               <div>🔮 Manglik: {activeCandidate.manglikStatus}</div>
               <div>👨‍👩‍👧 Family: {activeCandidate.familyType}</div>
             </div>
 
             {activeCandidate.bio && (
-              <p style={{ fontSize: '0.9rem', color: 'var(--text-primary)', background: 'rgba(255,255,255,0.03)', padding: '12px', borderRadius: '8px', margin: '0 0 16px 0', fontStyle: 'italic' }}>
+              <p style={{ fontSize: '0.88rem', color: '#FAF8F2', background: 'rgba(122,31,29,0.2)', border: '1px solid rgba(250,248,242,0.1)', padding: '10px 12px', borderRadius: '8px', margin: '0 0 16px 0', fontStyle: 'italic' }}>
                 "{activeCandidate.bio}"
               </p>
             )}
 
             {/* Swipe Action Controls */}
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '20px', marginTop: '10px' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '18px', marginTop: '6px' }}>
               {/* Undo */}
               <button
                 onClick={handleUndo}
@@ -234,30 +245,29 @@ export default function DiscoverPage() {
                 onClick={() => handleSwipe('DISLIKE')}
                 title="Pass (Left Arrow)"
                 style={{
-                  width: '60px',
-                  height: '60px',
+                  width: '58px',
+                  height: '58px',
                   borderRadius: '50%',
                   border: '2px solid #ef4444',
-                  background: 'rgba(239,68,68,0.1)',
+                  background: 'rgba(239,68,68,0.12)',
                   color: '#f87171',
                   fontSize: '1.4rem',
                   cursor: 'pointer',
-                  transition: 'transform 0.1s ease',
                 }}
               >
                 ✕
               </button>
 
-              {/* Superlike */}
+              {/* Superlike with Tehri Gold */}
               <button
                 onClick={() => handleSwipe('SUPERLIKE')}
                 title="Superlike (Up Arrow)"
                 style={{
-                  width: '54px',
-                  height: '54px',
+                  width: '52px',
+                  height: '52px',
                   borderRadius: '50%',
                   border: '2px solid var(--gold)',
-                  background: 'rgba(212,175,55,0.15)',
+                  background: 'rgba(229,184,66,0.18)',
                   color: 'var(--gold)',
                   fontSize: '1.3rem',
                   cursor: 'pointer',
@@ -266,16 +276,16 @@ export default function DiscoverPage() {
                 ★
               </button>
 
-              {/* Like */}
+              {/* Like with Geru Red flame */}
               <button
                 onClick={() => handleSwipe('LIKE')}
                 title="Like (Right Arrow)"
                 style={{
-                  width: '60px',
-                  height: '60px',
+                  width: '58px',
+                  height: '58px',
                   borderRadius: '50%',
                   border: '2px solid #10b981',
-                  background: 'rgba(16,185,129,0.1)',
+                  background: 'rgba(16,185,129,0.12)',
                   color: '#34d399',
                   fontSize: '1.4rem',
                   cursor: 'pointer',
@@ -290,11 +300,11 @@ export default function DiscoverPage() {
 
       {/* End of Deck State */}
       {!loading && (!activeCandidate || currentIndex >= deck.length) && (
-        <div className="card" style={{ maxWidth: '480px', textAlign: 'center', padding: '60px 30px' }}>
-          <span style={{ fontSize: '3.5rem', display: 'block', marginBottom: '16px' }}>✨</span>
-          <h2 style={{ color: 'var(--text-primary)', marginBottom: '8px' }}>You've Reached the End!</h2>
+        <div className="card aipan-card" style={{ maxWidth: '480px', textAlign: 'center', padding: '50px 30px', position: 'relative', zIndex: 2 }}>
+          <AipanChauki size={80} className="aipan-spin" />
+          <h2 style={{ color: '#FAF8F2', margin: '16px 0 8px 0' }}>Devbhoomi Deck Complete!</h2>
           <p style={{ color: 'var(--text-secondary)', marginBottom: '24px', fontSize: '0.95rem' }}>
-            You have reviewed all current matching profiles in your area. Come back shortly as new brides and grooms join Mangal every hour.
+            You have reviewed all matching profiles in your area. Come back shortly as fresh brides and grooms from Kumaon, Garhwal, and abroad join Mangal daily.
           </p>
           <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
             <button onClick={fetchDeck} className="btn btn-secondary">
@@ -313,8 +323,8 @@ export default function DiscoverPage() {
           style={{
             position: 'fixed',
             inset: 0,
-            background: 'rgba(0,0,0,0.85)',
-            backdropFilter: 'blur(10px)',
+            background: 'rgba(0,0,0,0.88)',
+            backdropFilter: 'blur(12px)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -323,32 +333,39 @@ export default function DiscoverPage() {
           }}
         >
           <div
-            className="card"
+            className="card aipan-card"
             style={{
               maxWidth: '440px',
               width: '100%',
               textAlign: 'center',
               padding: '40px 30px',
               border: '2px solid var(--gold)',
-              boxShadow: '0 0 50px rgba(212,175,55,0.3)',
+              boxShadow: '0 0 60px rgba(122,31,29,0.6)',
               animation: 'fadeIn 0.4s ease',
             }}
           >
-            <span style={{ fontSize: '3rem', display: 'block', marginBottom: '12px' }}>🎉💍</span>
-            <h2 style={{ fontFamily: 'var(--font-heading)', color: 'var(--gold)', fontSize: '2rem', margin: '0 0 8px 0' }}>
-              It's a Matrimonial Match!
+            <AipanCorner position="top-left" />
+            <AipanCorner position="top-right" />
+            <AipanCorner position="bottom-left" />
+            <AipanCorner position="bottom-right" />
+
+            <div style={{ marginBottom: '10px' }}>
+              <TehriNathEmblem size={64} />
+            </div>
+            <h2 style={{ fontFamily: 'var(--font-heading)', color: 'var(--gold)', fontSize: '2rem', margin: '0 0 6px 0' }}>
+              शुभ विवाह संयोग!
             </h2>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginBottom: '24px' }}>
-              You and <strong>{mutualMatchData.partnerName}</strong> liked each other. Chat and horoscope consultation are now unlocked!
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginBottom: '20px' }}>
+              You and <strong>{mutualMatchData.partnerName}</strong> liked each other! Devbhoomi chat and horoscope consultation are unlocked.
             </p>
 
-            <div style={{ width: '120px', height: '120px', borderRadius: '50%', overflow: 'hidden', margin: '0 auto 24px auto', border: '3px solid var(--gold)' }}>
+            <div style={{ width: '110px', height: '110px', borderRadius: '50%', overflow: 'hidden', margin: '0 auto 20px auto', border: '3px solid var(--gold)' }}>
               <img src={mutualMatchData.partnerPhoto} alt="Match" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               <Link href="/chat" className="btn btn-primary" style={{ padding: '12px' }}>
-                💬 Start Conversation
+                💬 Start Devbhoomi Conversation
               </Link>
               <button
                 onClick={() => setMutualMatchData(null)}

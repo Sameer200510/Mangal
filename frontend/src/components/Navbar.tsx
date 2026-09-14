@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import HealthBadge from './HealthBadge';
 import { useAuth } from '../context/AuthContext';
+import { TehriNathEmblem, AipanChauki } from './AipanPatterns';
 
 export default function Navbar() {
   const { user, logout } = useAuth();
@@ -14,106 +15,153 @@ export default function Navbar() {
         position: 'sticky',
         top: 0,
         zIndex: 50,
-        backgroundColor: 'rgba(8, 12, 21, 0.88)',
+        backgroundColor: 'rgba(9, 13, 18, 0.94)',
         backdropFilter: 'blur(20px)',
-        borderBottom: '1px solid rgba(212, 175, 55, 0.15)',
-        padding: '0.85rem 0',
+        borderBottom: '1.5px solid rgba(250, 248, 242, 0.18)',
+        boxShadow: '0 4px 25px rgba(0, 0, 0, 0.7), 0 1px 0 rgba(229, 184, 66, 0.25)',
       }}
     >
+      {/* Top Aipan Sacred Border Strip Accent */}
+      <div
+        style={{
+          height: '4px',
+          background: 'linear-gradient(90deg, #7A1F1D 0%, #E5B842 20%, #FAF8F2 50%, #E5B842 80%, #7A1F1D 100%)',
+          width: '100%',
+        }}
+      />
+
       <div
         className="container"
         style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          gap: '1.5rem',
+          gap: '1.25rem',
+          padding: '0.75rem 1.5rem',
         }}
       >
-        {/* Brand Logo */}
+        {/* Brand Logo with Aipan & Tehri Nath Heritage */}
         <Link
           href="/"
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '0.65rem',
+            gap: '0.75rem',
             textDecoration: 'none',
           }}
         >
+          {/* Authentic Kumaon Aipan Chauki Emblem */}
           <div
             style={{
-              width: '42px',
-              height: '42px',
+              position: 'relative',
+              width: '46px',
+              height: '46px',
               borderRadius: '12px',
-              background: 'var(--crimson-gradient)',
-              border: '1.5px solid var(--gold-primary)',
+              background: 'radial-gradient(circle, #8B2500 0%, #4A100E 100%)',
+              border: '1.5px solid #FAF8F2',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              boxShadow: '0 4px 14px rgba(158, 27, 50, 0.4)',
+              boxShadow: '0 4px 16px rgba(122, 31, 29, 0.6), inset 0 0 8px rgba(229, 184, 66, 0.4)',
+              overflow: 'hidden',
             }}
           >
-            <span style={{ fontSize: '1.4rem' }}>🪔</span>
+            <AipanChauki size={44} className="aipan-spin" />
+            <div
+              style={{
+                position: 'absolute',
+                inset: 0,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '1.3rem',
+                filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.8))',
+              }}
+            >
+              🪔
+            </div>
           </div>
+
           <div>
             <div
               style={{
                 fontFamily: 'var(--font-heading)',
-                fontSize: '1.65rem',
-                fontWeight: 800,
-                letterSpacing: '-0.02em',
-                lineHeight: 1.1,
+                fontSize: '1.75rem',
+                fontWeight: 900,
+                letterSpacing: '0.04em',
+                lineHeight: 1,
+                color: '#FAF8F2',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
               }}
-              className="text-gold-gradient"
             >
-              Mangal
+              <span>Mangal</span>
+              <span style={{ fontSize: '0.9rem', color: 'var(--gold)', fontFamily: 'serif' }}>मङ्गल</span>
             </div>
             <div
               style={{
-                fontSize: '0.68rem',
-                letterSpacing: '0.18em',
+                fontSize: '0.66rem',
+                letterSpacing: '0.14em',
                 textTransform: 'uppercase',
-                color: 'var(--text-secondary)',
-                fontWeight: 500,
+                color: 'var(--gold)',
+                fontWeight: 600,
+                marginTop: '2px',
               }}
             >
-              Matrimony & Weddings
+              Devbhoomi • Kumaon & Garhwal
             </div>
           </div>
         </Link>
 
-        {/* Navigation Links */}
+        {/* Navigation Links with Himalayan Motifs */}
         <nav
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '1.25rem',
+            gap: '1.15rem',
             fontSize: '0.88rem',
           }}
         >
-          <Link href="/matches" style={{ color: 'var(--text-primary)', textDecoration: 'none', fontWeight: 500 }}>
+          <Link href="/matches" style={{ color: 'var(--text-primary)', textDecoration: 'none', fontWeight: 500, transition: 'color 0.2s' }}>
             Matches
           </Link>
-          <Link href="/discover" style={{ color: 'var(--text-primary)', textDecoration: 'none', fontWeight: 500 }}>
-            Discover
+          <Link href="/discover" style={{ color: 'var(--text-primary)', textDecoration: 'none', fontWeight: 500, transition: 'color 0.2s' }}>
+            Discover Deck
           </Link>
-          <Link href="/chat" style={{ color: 'var(--text-primary)', textDecoration: 'none', fontWeight: 500 }}>
-            Chat
+          <Link href="/chat" style={{ color: 'var(--text-primary)', textDecoration: 'none', fontWeight: 500, transition: 'color 0.2s' }}>
+            Chat & Calls
           </Link>
-          <Link href="/kundli" style={{ color: 'var(--text-primary)', textDecoration: 'none', fontWeight: 500 }}>
-            Kundli
+          <Link href="/kundli" style={{ color: 'var(--text-primary)', textDecoration: 'none', fontWeight: 500, transition: 'color 0.2s' }}>
+            36 Guna Milan
           </Link>
-          <Link href="/pandits" style={{ color: 'var(--text-primary)', textDecoration: 'none', fontWeight: 500 }}>
-            Pandits
+          <Link href="/pandits" style={{ color: 'var(--text-primary)', textDecoration: 'none', fontWeight: 500, transition: 'color 0.2s' }}>
+            Pahadi Pandits
           </Link>
-          <Link href="/vendors" style={{ color: 'var(--text-primary)', textDecoration: 'none', fontWeight: 500 }}>
-            Vendors
+          <Link href="/vendors" style={{ color: 'var(--text-primary)', textDecoration: 'none', fontWeight: 500, transition: 'color 0.2s' }}>
+            Wedding Venues
           </Link>
-          <Link href="/pricing" style={{ color: 'var(--text-primary)', textDecoration: 'none', fontWeight: 500 }}>
-            Plans
+          <Link href="/pricing" style={{ color: 'var(--text-primary)', textDecoration: 'none', fontWeight: 500, transition: 'color 0.2s' }}>
+            Royal Plans
           </Link>
-          <Link href="/verify" style={{ color: 'var(--gold)', textDecoration: 'none', fontWeight: 500 }}>
-            Shield
+          <Link
+            href="/verify"
+            style={{
+              color: 'var(--gold)',
+              textDecoration: 'none',
+              fontWeight: 600,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '4px',
+              background: 'rgba(229, 184, 66, 0.1)',
+              padding: '4px 10px',
+              borderRadius: '12px',
+              border: '1px solid rgba(229, 184, 66, 0.3)',
+            }}
+          >
+            <span>🛡️</span> Shield
           </Link>
+
           {user?.role === 'ADMIN' && (
             <Link href="/admin" style={{ color: '#f87171', textDecoration: 'none', fontWeight: 600 }}>
               Admin
@@ -136,7 +184,7 @@ export default function Navbar() {
               <Link
                 href="/profile"
                 className="btn btn-outline"
-                style={{ padding: '0.45rem 1rem', fontSize: '0.82rem' }}
+                style={{ padding: '0.45rem 1rem', fontSize: '0.82rem', borderColor: 'var(--gold)' }}
               >
                 👤 {user.firstName}
               </Link>
@@ -160,7 +208,16 @@ export default function Navbar() {
               <Link href="/login" className="btn btn-outline" style={{ padding: '0.5rem 1.15rem', fontSize: '0.85rem' }}>
                 Sign In
               </Link>
-              <Link href="/signup" className="btn btn-primary" style={{ padding: '0.5rem 1.25rem', fontSize: '0.85rem' }}>
+              <Link
+                href="/signup"
+                className="btn btn-primary"
+                style={{
+                  padding: '0.5rem 1.35rem',
+                  fontSize: '0.85rem',
+                  background: 'var(--geru-gradient)',
+                  borderColor: '#FAF8F2',
+                }}
+              >
                 Join Free
               </Link>
             </>

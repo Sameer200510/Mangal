@@ -1,43 +1,69 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&display=swap');
 
 :root {
-  --font-heading: 'Playfair Display', serif;
+  --font-heading: 'Cinzel', 'Playfair Display', serif;
   --font-body: 'Outfit', sans-serif;
 
-  /* Theme Palette: Royal Indian Matrimonial Luxe */
-  --bg-dark: #080C15;
-  --bg-card: rgba(18, 24, 38, 0.75);
-  --bg-card-hover: rgba(26, 35, 54, 0.85);
-  --bg-card-border: rgba(212, 175, 55, 0.22);
-  --bg-card-border-glow: rgba(212, 175, 55, 0.5);
+  /* =========================================================
+     UTTARAKHAND KUMAONI AIPAN (ऐपण) & GARHWALI THEME PALETTE
+     ========================================================= */
 
-  --primary-crimson: #9E1B32;
-  --primary-crimson-hover: #B8223D;
-  --primary-crimson-glow: rgba(158, 27, 50, 0.4);
+  /* 1. Geru (गेरू) - Traditional Kumaoni Terracotta Clay Red */
+  --geru-deep: #4A100E;
+  --geru-base: #7A1F1D;
+  --geru-terracotta: #8B2500;
+  --geru-bright: #A32B20;
+  --geru-glow: rgba(122, 31, 29, 0.45);
+  --geru-gradient: linear-gradient(135deg, #8B2500 0%, #7A1F1D 50%, #4A100E 100%);
+  --geru-subtle-gradient: linear-gradient(180deg, rgba(122, 31, 29, 0.12) 0%, rgba(74, 16, 14, 0.25) 100%);
 
-  --gold-primary: #D4AF37;
+  /* 2. Biswar (बिसवार) - Traditional Rice Flour Sacred White */
+  --biswar-pure: #FAF8F2;
+  --biswar-chalk: #F3EFE6;
+  --biswar-line: rgba(250, 248, 242, 0.28);
+  --biswar-glow: rgba(250, 248, 242, 0.6);
+  --biswar-faint: rgba(250, 248, 242, 0.08);
+
+  /* 3. Garhwali Himalayan & Devbhoomi Tones */
+  --deodar-midnight: #090D12;
+  --deodar-forest: #0D1418;
+  --himalaya-snow: #EBF2F7;
+  --buransh-scarlet: #C01E35; /* बुरांश - Scarlet Rhododendron of Uttarakhand */
+  --tehri-gold: #E5B842;      /* पारंपरिक टिहरी नथ स्वर्ण */
+  --kumaon-brass: #D4AF37;    /* अल्मोड़ा ताम्र/पीतल मंदिर घंटियां */
   --gold-light: #FDE047;
-  --gold-gradient: linear-gradient(135deg, #F9D976 0%, #D4AF37 50%, #B38728 100%);
-  --crimson-gradient: linear-gradient(135deg, #B8223D 0%, #800020 100%);
-  --aurora-gradient: linear-gradient(135deg, rgba(158, 27, 50, 0.15) 0%, rgba(212, 175, 55, 0.08) 50%, rgba(10, 15, 28, 0.95) 100%);
+  --gold-gradient: linear-gradient(135deg, #FDE047 0%, #E5B842 50%, #B88924 100%);
+  --buransh-gradient: linear-gradient(135deg, #D62828 0%, #8B1E1B 50%, #5C1410 100%);
 
-  --text-primary: #F9FAFB;
-  --text-secondary: #9CA3AF;
-  --text-muted: #6B7280;
+  /* Backgrounds & Cards */
+  --bg-primary: #070A0E;
+  --bg-secondary: #0E131A;
+  --bg-dark: #070A0E;
+  --bg-card: rgba(16, 21, 29, 0.82);
+  --bg-card-hover: rgba(24, 31, 42, 0.92);
+  --bg-card-border: rgba(250, 248, 242, 0.16);
+  --bg-card-border-gold: rgba(229, 184, 66, 0.35);
+
+  /* Text tokens */
+  --text-primary: #FAF8F2;
+  --text-secondary: #B4B9C4;
+  --text-muted: #7E8594;
   --text-gold: #F3C969;
+  --text-geru: #E26D5C;
 
-  --success: #10B981;
-  --warning: #F59E0B;
-  --danger: #EF4444;
+  /* Accents */
+  --gold: #E5B842;
+  --crimson: #C01E35;
+  --border-color: rgba(250, 248, 242, 0.14);
 
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 20px;
   --radius-full: 9999px;
 
-  --shadow-glass: 0 10px 30px 0 rgba(0, 0, 0, 0.5), inset 0 1px 1px 0 rgba(255, 255, 255, 0.1);
-  --shadow-gold: 0 4px 20px rgba(212, 175, 55, 0.25);
-  --shadow-crimson: 0 4px 20px rgba(158, 27, 50, 0.35);
+  --shadow-aipan: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(122, 31, 29, 0.25);
+  --shadow-gold: 0 4px 20px rgba(229, 184, 66, 0.3);
+  --shadow-geru: 0 6px 24px rgba(122, 31, 29, 0.45);
 
   --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
@@ -51,7 +77,7 @@
 
 html,
 body {
-  background-color: var(--bg-dark);
+  background-color: var(--bg-primary);
   color: var(--text-primary);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
@@ -60,16 +86,18 @@ body {
   overflow-x: hidden;
 }
 
-/* Background Atmosphere */
+/* =========================================================
+   ATMOSPHERIC DEVBHOOMI BACKDROP (Himalayan Mist + Geru Glow)
+   ========================================================= */
 body::before {
   content: '';
   position: fixed;
-  top: -20%;
-  left: 20%;
-  width: 60vw;
-  height: 60vw;
-  background: radial-gradient(circle, rgba(158, 27, 50, 0.12) 0%, transparent 60%);
-  filter: blur(80px);
+  top: -15%;
+  left: 15%;
+  width: 70vw;
+  height: 70vw;
+  background: radial-gradient(circle, rgba(122, 31, 29, 0.18) 0%, rgba(192, 30, 53, 0.08) 35%, transparent 65%);
+  filter: blur(90px);
   pointer-events: none;
   z-index: 0;
 }
@@ -78,19 +106,19 @@ body::after {
   content: '';
   position: fixed;
   bottom: -20%;
-  right: 10%;
-  width: 50vw;
-  height: 50vw;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+  right: 5%;
+  width: 55vw;
+  height: 55vw;
+  background: radial-gradient(circle, rgba(229, 184, 66, 0.1) 0%, rgba(74, 16, 14, 0.15) 45%, transparent 70%);
   filter: blur(100px);
   pointer-events: none;
   z-index: 0;
 }
 
 /* Typography Helpers */
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  letter-spacing: -0.01em;
+  letter-spacing: 0.02em;
 }
 
 .text-gold-gradient {
@@ -99,27 +127,66 @@ h1, h2, h3, h4 {
   -webkit-text-fill-color: transparent;
 }
 
-.text-crimson-gradient {
-  background: var(--crimson-gradient);
+.text-geru-gradient {
+  background: linear-gradient(135deg, #FAF8F2 0%, #F3C969 50%, #C01E35 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Glassmorphism Containers */
+/* =========================================================
+   AIPAN (ऐपण) ART CARDS & CONTAINERS
+   ========================================================= */
+
+/* Main Card Class */
+.card,
 .glass-panel {
   background: var(--bg-card);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--bg-card-border);
-  box-shadow: var(--shadow-glass);
   border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-aipan);
   transition: all var(--transition-smooth);
+  position: relative;
 }
 
+.card:hover,
 .glass-panel:hover {
   background: var(--bg-card-hover);
-  border-color: var(--bg-card-border-glow);
-  transform: translateY(-2px);
+  border-color: var(--bg-card-border-gold);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(122, 31, 29, 0.35);
+}
+
+/* Dedicated Kumaoni Aipan Card (Terracotta Geru Texture) */
+.aipan-card {
+  background: linear-gradient(135deg, rgba(122, 31, 29, 0.28) 0%, rgba(16, 21, 29, 0.95) 50%, rgba(74, 16, 14, 0.4) 100%);
+  border: 1.5px solid rgba(250, 248, 242, 0.2);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-aipan);
+  position: relative;
+  overflow: hidden;
+}
+
+.aipan-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #E5B842 0%, #FAF8F2 25%, #7A1F1D 50%, #FAF8F2 75%, #E5B842 100%);
+}
+
+/* Authentic Aipan Rice-Flour Border Strip (Bel Pattern) */
+.aipan-border-strip {
+  height: 18px;
+  background-color: var(--geru-base);
+  background-image: radial-gradient(circle at 10px 9px, #FAF8F2 2px, transparent 2.5px),
+                    radial-gradient(circle at 30px 9px, #E5B842 1.5px, transparent 2px);
+  background-size: 40px 18px;
+  border-top: 1.5px solid #FAF8F2;
+  border-bottom: 1.5px solid #FAF8F2;
 }
 
 /* Buttons */
@@ -127,7 +194,7 @@ h1, h2, h3, h4 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.55rem;
   padding: 0.75rem 1.75rem;
   font-family: var(--font-body);
   font-weight: 600;
@@ -138,93 +205,131 @@ h1, h2, h3, h4 {
   text-decoration: none;
   border: none;
   outline: none;
+  letter-spacing: 0.02em;
 }
 
+/* Primary Button: Kumaoni Geru + Buransh Flame */
 .btn-primary {
-  background: var(--crimson-gradient);
-  color: #FFFFFF;
-  box-shadow: var(--shadow-crimson);
+  background: var(--buransh-gradient);
+  color: #FAF8F2;
+  box-shadow: var(--shadow-geru);
+  border: 1px solid rgba(250, 248, 242, 0.25);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(158, 27, 50, 0.5);
+  box-shadow: 0 8px 28px rgba(192, 30, 53, 0.55);
   filter: brightness(1.1);
+  border-color: var(--tehri-gold);
 }
 
+/* Secondary Button: Biswar Outline */
+.btn-secondary {
+  background: rgba(250, 248, 242, 0.05);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(8px);
+}
+
+.btn-secondary:hover {
+  background: rgba(250, 248, 242, 0.12);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* Gold Button: Garhwali Tehri Nath Luster */
 .btn-gold {
   background: var(--gold-gradient);
-  color: #1A1100;
+  color: #261600;
+  font-weight: 700;
   box-shadow: var(--shadow-gold);
+  border: 1px solid #FAF8F2;
 }
 
 .btn-gold:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(212, 175, 55, 0.4);
+  box-shadow: 0 8px 28px rgba(229, 184, 66, 0.45);
   filter: brightness(1.08);
 }
 
 .btn-outline {
   background: transparent;
   color: var(--text-primary);
-  border: 1px solid var(--bg-card-border);
+  border: 1px solid var(--border-color);
   backdrop-filter: blur(8px);
 }
 
 .btn-outline:hover {
-  border-color: var(--gold-primary);
-  color: var(--gold-primary);
-  background: rgba(212, 175, 55, 0.05);
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(229, 184, 66, 0.08);
 }
 
-/* Badge Styles */
+/* Badges */
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.25rem 0.75rem;
-  font-size: 0.75rem;
+  padding: 0.28rem 0.85rem;
+  font-size: 0.76rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   border-radius: var(--radius-full);
 }
 
 .badge-gold {
-  background: rgba(212, 175, 55, 0.15);
+  background: rgba(229, 184, 66, 0.15);
   color: var(--text-gold);
-  border: 1px solid rgba(212, 175, 55, 0.3);
-}
-
-.badge-success {
-  background: rgba(16, 185, 129, 0.15);
-  color: #34D399;
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  border: 1px solid rgba(229, 184, 66, 0.4);
 }
 
 .badge-crimson {
-  background: rgba(158, 27, 50, 0.15);
-  color: #F87171;
-  border: 1px solid rgba(158, 27, 50, 0.3);
+  background: rgba(122, 31, 29, 0.25);
+  color: #FCA5A5;
+  border: 1px solid rgba(192, 30, 53, 0.4);
+}
+
+.badge-pahadi {
+  background: linear-gradient(135deg, rgba(122, 31, 29, 0.4) 0%, rgba(229, 184, 66, 0.2) 100%);
+  color: #FAF8F2;
+  border: 1px solid var(--tehri-gold);
+}
+
+.badge-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
 }
 
 /* Micro-animations */
-@keyframes pulseGlow {
+@keyframes spinAipan {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.aipan-spin {
+  animation: spinAipan 60s linear infinite;
+}
+
+@keyframes floatPahadi {
   0%, 100% {
-    opacity: 0.4;
-    transform: scale(1);
+    transform: translateY(0);
   }
   50% {
-    opacity: 0.8;
-    transform: scale(1.03);
+    transform: translateY(-6px);
   }
 }
 
-.pulse-glow {
-  animation: pulseGlow 4s ease-in-out infinite;
+.pahadi-float {
+  animation: floatPahadi 4s ease-in-out infinite;
 }
 
-/* Layout Utilities */
+/* Container */
 .container {
   width: 100%;
   max-width: 1240px;

@@ -56,9 +56,18 @@ importers:
       pino-http:
         specifier: ^10.4.0
         version: 10.5.0
+      prisma:
+        specifier: ^6.4.1
+        version: 6.19.3(typescript@5.9.3)
       socket.io:
         specifier: ^4.8.1
         version: 4.8.3
+      tsx:
+        specifier: ^4.19.3
+        version: 4.23.13
+      typescript:
+        specifier: ^5.7.3
+        version: 5.9.3
       zod:
         specifier: ^3.24.2
         version: 3.25.76
@@ -78,31 +87,9 @@ importers:
       pino-pretty:
         specifier: ^13.0.0
         version: 13.1.3
-      prisma:
-        specifier: ^6.4.1
-        version: 6.19.3(typescript@5.9.3)
-      tsx:
-        specifier: ^4.19.3
-        version: 4.23.13
-      typescript:
-        specifier: ^5.7.3
-        version: 5.9.3
 
   frontend:
     dependencies:
-      next:
-        specifier: 14.2.23
-        version: 14.2.23(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react:
-        specifier: ^18.3.1
-        version: 18.3.1
-      react-dom:
-        specifier: ^18.3.1
-        version: 18.3.1(react@18.3.1)
-      zod:
-        specifier: ^3.24.2
-        version: 3.25.76
-    devDependencies:
       '@types/node':
         specifier: ^22.13.8
         version: 22.20.2
@@ -112,9 +99,21 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.5
         version: 18.3.7(@types/react@18.3.31)
+      next:
+        specifier: 14.2.23
+        version: 14.2.23(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react:
+        specifier: ^18.3.1
+        version: 18.3.1
+      react-dom:
+        specifier: ^18.3.1
+        version: 18.3.1(react@18.3.1)
       typescript:
         specifier: ^5.7.3
         version: 5.9.3
+      zod:
+        specifier: ^3.24.2
+        version: 3.25.76
 
 packages:
 
@@ -297,28 +296,24 @@ packages:
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
-    libc: [glibc]
 
   '@next/swc-linux-arm64-musl@14.2.23':
     resolution: {integrity: sha512-Mm5KHd7nGgeJ4EETvVgFuqKOyDh+UMXHXxye6wRRFDr4FdVRI6YTxajoV2aHE8jqC14xeAMVZvLqYqS7isHL+g==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
-    libc: [musl]
 
   '@next/swc-linux-x64-gnu@14.2.23':
     resolution: {integrity: sha512-Ybfqlyzm4sMSEQO6lDksggAIxnvWSG2cDWnG2jgd+MLbHYn2pvFA8DQ4pT2Vjk3Cwrv+HIg7vXJ8lCiLz79qoQ==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
-    libc: [glibc]
 
   '@next/swc-linux-x64-musl@14.2.23':
     resolution: {integrity: sha512-OSQX94sxd1gOUz3jhhdocnKsy4/peG8zV1HVaW6DLEbEmRRtUCUQZcKxUD9atLYa3RZA+YJx+WZdOnTkDuNDNA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
-    libc: [musl]
 
   '@next/swc-win32-arm64-msvc@14.2.23':
     resolution: {integrity: sha512-ezmbgZy++XpIMTcTNd0L4k7+cNI4ET5vMv/oqNfTuSXkZtSA9BURElPFyarjjGtRgZ9/zuKDHoMdZwDZIY3ehQ==}

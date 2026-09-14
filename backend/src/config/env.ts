@@ -23,9 +23,9 @@ const envSchema = z.object({
   REDIS_ENABLED: z.string().transform((val) => val === 'true').default('false'),
   REDIS_URL: z.string().default('redis://localhost:6379'),
 
-  JWT_ACCESS_SECRET: z.string().min(32, 'JWT_ACCESS_SECRET must be at least 32 characters'),
+  JWT_ACCESS_SECRET: z.string().min(32, 'JWT_ACCESS_SECRET must be at least 32 characters').default('mangal_default_jwt_access_secret_key_32_chars_long'),
   JWT_ACCESS_EXPIRY: z.string().default('15m'),
-  JWT_REFRESH_SECRET: z.string().min(32, 'JWT_REFRESH_SECRET must be at least 32 characters'),
+  JWT_REFRESH_SECRET: z.string().min(32, 'JWT_REFRESH_SECRET must be at least 32 characters').default('mangal_default_jwt_refresh_secret_key_32_chars_long'),
   JWT_REFRESH_EXPIRY: z.string().default('7d'),
   COOKIE_SECRET: z.string().default('mangal_dev_cookie_secret_key_32_chars_long'),
 

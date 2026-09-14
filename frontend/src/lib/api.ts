@@ -1,6 +1,7 @@
 import { ApiResponse, HealthStatus } from '../common';
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
+const rawApiBase = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
+const API_BASE = rawApiBase.startsWith('http') ? rawApiBase : `https://${rawApiBase}`;
 
 export async function fetchApi<T>(
   endpoint: string,

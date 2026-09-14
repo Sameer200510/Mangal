@@ -14,14 +14,26 @@ const nextConfig = {
     ],
   },
   async rewrites() {
+    const rawBackendUrl =
+      process.env.BACKEND_URL ||
+      process.env.NEXT_PUBLIC_API_URL ||
+      'http://localhost:4000';
+    const backendUrl = rawBackendUrl.startsWith('http')
+      ? rawBackendUrl
+      : `https://${rawBackendUrl}`;
+
     return [
       {
         source: '/api/v1/:path*',
-        destination: 'http://localhost:4000/api/v1/:path*',
+        destination: `${backendUrl}/api/v1/:path*`,
       },
       {
         source: '/health/:path*',
-        destination: 'http://localhost:4000/health/:path*',
+        destination: `${backendUrl}/health/:path*`,
+      },
+      {
+        source: '/uploads/:path*',
+        destination: `${backendUrl}/uploads/:path*`,
       },
     ];
   },

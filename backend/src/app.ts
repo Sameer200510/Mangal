@@ -9,6 +9,16 @@ import { errorHandler, ApiError } from './middleware/errorHandler.js';
 import healthRouter from './routes/health.js';
 import authRouter from './modules/auth/auth.routes.js';
 import profileRouter from './modules/profile/profile.routes.js';
+import verificationRouter from './modules/verification/verification.routes.js';
+import matchRouter from './modules/match/match.routes.js';
+import interestRouter from './modules/interest/interest.routes.js';
+import chatRouter from './modules/chat/chat.routes.js';
+import kundliRouter from './modules/kundli/kundli.routes.js';
+import vendorRouter from './modules/vendor/vendor.routes.js';
+import paymentRouter from './modules/payment/payment.routes.js';
+import notificationRouter from './modules/notification/notification.routes.js';
+import adminRouter from './modules/admin/admin.routes.js';
+import aiRouter from './modules/ai/ai.routes.js';
 
 export function createApp(): Express {
   const app = express();
@@ -26,7 +36,6 @@ export function createApp(): Express {
   app.use(
     cors({
       origin: (origin, callback) => {
-        // Allow requests with no origin (like mobile apps, curl, server-to-server)
         if (!origin || allowedOrigins.includes(origin) || allowedOrigins.includes('*')) {
           callback(null, true);
         } else {
@@ -49,18 +58,26 @@ export function createApp(): Express {
   app.use(express.json({ limit: '10mb' }));
   app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-  // 6. Static Uploads Serving (for local file adapter)
+  // 6. Static Uploads Serving
   app.use('/uploads', express.static(path.resolve(env.STORAGE_LOCAL_PATH)));
 
-  // 7. Health & Diagnostic Endpoints (available at both root and api prefix)
+  // 7. Health & Diagnostic Endpoints
   app.use('/health', healthRouter);
   app.use(`${env.API_PREFIX}/health`, healthRouter);
 
-  // 8. Authentication Module Routes
+  // 8. Modular Domain Routes
   app.use(`${env.API_PREFIX}/auth`, authRouter);
-
-  // 9. Profile & Onboarding Module Routes
   app.use(`${env.API_PREFIX}/profile`, profileRouter);
+  app.use(`${env.API_PREFIX}/verification`, verificationRouter);
+  app.use(`${env.API_PREFIX}/matches`, matchRouter);
+  app.use(`${env.API_PREFIX}/interest`, interestRouter);
+  app.use(`${env.API_PREFIX}/chat`, chatRouter);
+  app.use(`${env.API_PREFIX}/kundli`, kundliRouter);
+  app.use(`${env.API_PREFIX}/vendors`, vendorRouter);
+  app.use(`${env.API_PREFIX}/payments`, paymentRouter);
+  app.use(`${env.API_PREFIX}/notifications`, notificationRouter);
+  app.use(`${env.API_PREFIX}/admin`, adminRouter);
+  app.use(`${env.API_PREFIX}/ai`, aiRouter);
 
   // Root Welcome Endpoint
   app.get('/', (_req: Request, res: Response) => {
@@ -73,12 +90,12 @@ export function createApp(): Express {
     });
   });
 
-  // 8. 404 Catch-All Handler
+  // 404 Catch-All Handler
   app.use((req: Request) => {
     throw ApiError.notFound(`Cannot find route: ${req.method} ${req.originalUrl}`);
   });
 
-  // 9. Central Error Handler
+  // Central Error Handler
   app.use(errorHandler);
 
   return app;

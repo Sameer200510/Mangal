@@ -16,6 +16,7 @@ export interface AuthUser {
 interface AuthContextType {
   user: AuthUser | null;
   accessToken: string | null;
+  token: string | null;
   loading: boolean;
   login: (tokens: { accessToken: string; refreshToken: string }, user: AuthUser) => void;
   logout: () => Promise<void>;
@@ -77,6 +78,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       value={{
         user,
         accessToken,
+        token: accessToken,
         loading,
         login,
         logout,

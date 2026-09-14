@@ -22,10 +22,11 @@
     "db:studio": "pnpm --filter backend db:studio",
     "clean": "rimraf node_modules frontend/node_modules backend/node_modules frontend/.next backend/dist"
   },
-  "devDependencies": {
+  "dependencies": {
     "concurrently": "^9.1.2",
     "cross-env": "^7.0.3",
     "rimraf": "^6.0.1",
     "typescript": "^5.7.3"
-  }
+  },
+  "devDependencies": {}
 }

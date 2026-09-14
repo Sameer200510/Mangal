@@ -56,7 +56,7 @@ If you prefer to configure each service manually in the Render dashboard:
 6. **Branch:** `main`
 7. **Build Command:**
    ```bash
-   pnpm install --no-frozen-lockfile && pnpm --filter backend run db:generate && pnpm --filter backend run build
+   pnpm install --no-frozen-lockfile --prod=false && pnpm --filter backend run db:generate && pnpm --filter backend run build
    ```
 8. **Start Command:**
    ```bash
@@ -89,7 +89,7 @@ If you prefer to configure each service manually in the Render dashboard:
 6. **Branch:** `main`
 7. **Build Command:**
    ```bash
-   pnpm install --no-frozen-lockfile && pnpm --filter frontend run build
+   pnpm install --no-frozen-lockfile --prod=false && pnpm --filter frontend run build
    ```
 8. **Start Command:**
    ```bash

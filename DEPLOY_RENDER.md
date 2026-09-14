@@ -56,14 +56,15 @@ If you prefer to configure each service manually in the Render dashboard:
 6. **Branch:** `main`
 7. **Build Command:**
    ```bash
-   npm install -g pnpm && pnpm install && pnpm --filter backend run db:generate && pnpm --filter backend run build
+   corepack enable && pnpm install --no-frozen-lockfile && pnpm --filter backend run db:generate && pnpm --filter backend run build
    ```
 8. **Start Command:**
    ```bash
-   pnpm --filter backend run db:deploy && pnpm --filter backend start
+   corepack enable && pnpm --filter backend run db:deploy && pnpm --filter backend start
    ```
-9. **Health Check Path:** `/health/ready`
+9. **Health Check Path:** `/health/live`
 10. **Environment Variables:**
+    - `NODE_VERSION`: `20.18.0`
     - `NODE_ENV`: `production`
     - `PORT`: `10000`
     - `DATABASE_URL`: *(Paste your Internal Database URL from Step 1)*
@@ -89,13 +90,14 @@ If you prefer to configure each service manually in the Render dashboard:
 6. **Branch:** `main`
 7. **Build Command:**
    ```bash
-   npm install -g pnpm && pnpm install && pnpm --filter frontend run build
+   corepack enable && pnpm install --no-frozen-lockfile && pnpm --filter frontend run build
    ```
 8. **Start Command:**
    ```bash
-   pnpm --filter frontend start
+   corepack enable && pnpm --filter frontend start
    ```
 9. **Environment Variables:**
+    - `NODE_VERSION`: `20.18.0`
     - `NODE_ENV`: `production`
     - `NEXT_PUBLIC_API_URL`: `https://mangal-api.onrender.com` *(Your backend URL from Step 2)*
     - `BACKEND_URL`: `https://mangal-api.onrender.com` *(Your backend URL from Step 2)*

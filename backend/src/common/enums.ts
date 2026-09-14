@@ -1,0 +1,138 @@
+export enum UserRole {
+  BRIDE = 'BRIDE',
+  GROOM = 'GROOM',
+  FAMILY = 'FAMILY',
+  PANDIT = 'PANDIT',
+  ORGANIZER = 'ORGANIZER',
+  ADMIN = 'ADMIN',
+  MODERATOR = 'MODERATOR',
+  SUPPORT = 'SUPPORT',
+}
+
+export enum UserStatus {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+  SUSPENDED = 'SUSPENDED',
+  PENDING_VERIFICATION = 'PENDING_VERIFICATION',
+  DELETED = 'DELETED',
+}
+
+export enum Gender {
+  MALE = 'MALE',
+  FEMALE = 'FEMALE',
+  OTHER = 'OTHER',
+}
+
+export enum MaritalStatus {
+  NEVER_MARRIED = 'NEVER_MARRIED',
+  DIVORCED = 'DIVORCED',
+  WIDOWED = 'WIDOWED',
+  AWAITING_DIVORCE = 'AWAITING_DIVORCE',
+  ANNULLED = 'ANNULLED',
+}
+
+export enum Religion {
+  HINDU = 'HINDU',
+  SIKH = 'SIKH',
+  JAIN = 'JAIN',
+  BUDDHIST = 'BUDDHIST',
+  CHRISTIAN = 'CHRISTIAN',
+  MUSLIM = 'MUSLIM',
+  PARSI = 'PARSI',
+  JEWISH = 'JEWISH',
+  OTHER = 'OTHER',
+}
+
+export enum ManglikStatus {
+  MANGLIK = 'MANGLIK',
+  NON_MANGLIK = 'NON_MANGLIK',
+  ANSHIK_MANGLIK = 'ANSHIK_MANGLIK',
+  DONT_KNOW = 'DONT_KNOW',
+}
+
+export enum FamilyType {
+  JOINT = 'JOINT',
+  NUCLEAR = 'NUCLEAR',
+  EXTENDED = 'EXTENDED',
+}
+
+export enum DietPreference {
+  VEGETARIAN = 'VEGETARIAN',
+  NON_VEGETARIAN = 'NON_VEGETARIAN',
+  EGGETARIAN = 'EGGETARIAN',
+  JAIN = 'JAIN',
+  VEGAN = 'VEGAN',
+}
+
+export enum VerificationStatus {
+  UNVERIFIED = 'UNVERIFIED',
+  PENDING = 'PENDING',
+  VERIFIED = 'VERIFIED',
+  REJECTED = 'REJECTED',
+}
+
+export enum DocumentType {
+  AADHAAR = 'AADHAAR',
+  PAN = 'PAN',
+  PASSPORT = 'PASSPORT',
+  DRIVING_LICENSE = 'DRIVING_LICENSE',
+}
+
+export enum InterestStatus {
+  PENDING = 'PENDING',
+  ACCEPTED = 'ACCEPTED',
+  REJECTED = 'REJECTED',
+  WITHDRAWN = 'WITHDRAWN',
+}
+
+export enum SwipeAction {
+  LIKE = 'LIKE',
+  DISLIKE = 'DISLIKE',
+  SUPERLIKE = 'SUPERLIKE',
+}
+
+export enum CallType {
+  AUDIO = 'AUDIO',
+  VIDEO = 'VIDEO',
+}
+
+export enum CallStatus {
+  INITIATED = 'INITIATED',
+  RINGING = 'RINGING',
+  CONNECTED = 'CONNECTED',
+  COMPLETED = 'COMPLETED',
+  MISSED = 'MISSED',
+  DECLINED = 'DECLINED',
+}
+
+export enum MembershipTier {
+  FREE = 'FREE',
+  SILVER = 'SILVER',
+  GOLD = 'GOLD',
+  DIAMOND = 'DIAMOND',
+}
+
+export enum PaymentStatus {
+  PENDING = 'PENDING',
+  SUCCESS = 'SUCCESS',
+  FAILED = 'FAILED',
+  REFUNDED = 'REFUNDED',
+}
+
+export enum PanditServiceType {
+  KUNDLI_MATCHING = 'KUNDLI_MATCHING',
+  DOSHA_ANALYSIS = 'DOSHA_ANALYSIS',
+  PUJA_SERVICES = 'PUJA_SERVICES',
+  MUHURAT = 'MUHURAT',
+  GENERAL_CONSULTATION = 'GENERAL_CONSULTATION',
+}
+
+export enum OrganizerServiceType {
+  VENUE = 'VENUE',
+  CATERING = 'CATERING',
+  PHOTOGRAPHY = 'PHOTOGRAPHY',
+  VIDEOGRAPHY = 'VIDEOGRAPHY',
+  DECORATION = 'DECORATION',
+  DJ_MUSIC = 'DJ_MUSIC',
+  WEDDING_PLANNER = 'WEDDING_PLANNER',
+}

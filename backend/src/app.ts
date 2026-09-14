@@ -8,6 +8,7 @@ import { globalRateLimiter } from './middleware/rateLimiter.js';
 import { errorHandler, ApiError } from './middleware/errorHandler.js';
 import healthRouter from './routes/health.js';
 import authRouter from './modules/auth/auth.routes.js';
+import profileRouter from './modules/profile/profile.routes.js';
 
 export function createApp(): Express {
   const app = express();
@@ -57,6 +58,9 @@ export function createApp(): Express {
 
   // 8. Authentication Module Routes
   app.use(`${env.API_PREFIX}/auth`, authRouter);
+
+  // 9. Profile & Onboarding Module Routes
+  app.use(`${env.API_PREFIX}/profile`, profileRouter);
 
   // Root Welcome Endpoint
   app.get('/', (_req: Request, res: Response) => {

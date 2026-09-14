@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useAuth } from '../../context/AuthContext';
-import { AipanCorner, AipanChauki, TehriNathEmblem, HimalayanSilhouettes } from '../../components/AipanPatterns';
+import { AipanCorner, AipanChauki, TehriNathEmblem, HimalayanSilhouettes, AipanBorder } from '../../components/AipanPatterns';
 
 export default function DiscoverPage() {
   const { user, token } = useAuth();
@@ -161,6 +161,7 @@ export default function DiscoverPage() {
             zIndex: 2,
           }}
         >
+          <AipanBorder height={16} id="discover-card-top" />
           <AipanCorner position="top-left" />
           <AipanCorner position="top-right" />
 
@@ -202,6 +203,9 @@ export default function DiscoverPage() {
               </p>
             </div>
           </div>
+
+          {/* Authentic Aipan Divider Strip */}
+          <AipanBorder height={12} id="discover-card-mid" />
 
           {/* Details Section */}
           <div style={{ padding: '22px', background: 'var(--bg-card)' }}>
@@ -295,6 +299,7 @@ export default function DiscoverPage() {
               </button>
             </div>
           </div>
+          <AipanBorder height={14} id="discover-card-bot" />
         </div>
       )}
 

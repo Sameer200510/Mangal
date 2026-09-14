@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { AipanChauki, AipanBorderStrip, TehriNathEmblem, HimalayanSilhouettes, AipanCorner } from '../components/AipanPatterns';
+import { AipanChauki, AipanBorder, AipanDivider, TehriNathEmblem, HimalayanSilhouettes, AipanCorner } from '../components/AipanPatterns';
 
 export default function HomePage() {
   return (
@@ -43,15 +43,15 @@ export default function HomePage() {
                 gap: '0.65rem',
                 padding: '0.45rem 1.4rem',
                 borderRadius: 'var(--radius-full)',
-                backgroundColor: 'rgba(122, 31, 29, 0.45)',
+                backgroundColor: 'rgba(122, 31, 29, 0.5)',
                 border: '1.5px solid var(--tehri-gold)',
                 marginBottom: '1.8rem',
-                boxShadow: '0 4px 18px rgba(122, 31, 29, 0.5)',
+                boxShadow: '0 4px 18px rgba(122, 31, 29, 0.55)',
               }}
             >
-              <TehriNathEmblem size={24} />
-              <span style={{ fontSize: '0.82rem', fontWeight: 700, color: '#FAF8F2', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-                Devbhoomi Uttarakhand • Kumaoni Aipan (ऐपण) & Garhwali Matrimony
+              <TehriNathEmblem size={22} />
+              <span style={{ fontSize: '0.82rem', fontWeight: 700, color: '#FAF8F2', letterSpacing: '0.09em', textTransform: 'uppercase' }}>
+                ✨ Devbhoomi Uttarakhand • Sacred Pahadi Matrimony
               </span>
             </div>
 
@@ -84,27 +84,34 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* 2. AIPAN GERU SEARCH WIDGET */}
+          {/* 2. AIPAN GERU SEARCH WIDGET WITH AUTHENTIC AURA BORDERS */}
           <div
             className="aipan-card"
             style={{
               maxWidth: '1020px',
               margin: '0 auto',
-              padding: '2.2rem 2.5rem',
+              padding: 0,
               position: 'relative',
-              boxShadow: '0 20px 50px rgba(0,0,0,0.8), 0 0 35px rgba(122, 31, 29, 0.4)',
+              boxShadow: '0 20px 55px rgba(0,0,0,0.85), 0 0 40px rgba(122, 31, 29, 0.45)',
+              borderRadius: '16px',
+              overflow: 'hidden',
+              border: '1.5px solid rgba(250, 248, 242, 0.3)',
             }}
           >
-            <AipanCorner position="top-left" />
-            <AipanCorner position="top-right" />
-            <AipanCorner position="bottom-left" />
-            <AipanCorner position="bottom-right" />
+            {/* Top Authentic Aipan Bel Border */}
+            <AipanBorder height={24} id="hero-search-top" />
 
-            <div style={{ textAlign: 'center', marginBottom: '18px' }}>
-              <span style={{ fontSize: '0.82rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--gold)', fontWeight: 700 }}>
-                🪔 शुभ विवाह अनुसंधान • Discover Your Matrimonial Match
-              </span>
-            </div>
+            <div style={{ padding: '2rem 2.4rem', position: 'relative' }}>
+              <AipanCorner position="top-left" />
+              <AipanCorner position="top-right" />
+              <AipanCorner position="bottom-left" />
+              <AipanCorner position="bottom-right" />
+
+              <div style={{ textAlign: 'center', marginBottom: '18px' }}>
+                <span style={{ fontSize: '0.84rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--gold)', fontWeight: 700 }}>
+                  🪔 शुभ विवाह अनुसंधान • Discover Your Matrimonial Match
+                </span>
+              </div>
 
             <form action="/matches" method="GET">
               <div
@@ -247,15 +254,19 @@ export default function HomePage() {
                 </div>
               </div>
             </form>
+            </div>
+
+            {/* Bottom Authentic Aipan Bel Border */}
+            <AipanBorder height={24} id="hero-search-bottom" />
           </div>
         </div>
       </section>
 
-      {/* Decorative Aipan Strip Dividing Sections */}
-      <AipanBorderStrip height={20} />
+      {/* Decorative Aipan Divider with Central Lotus Chauki */}
+      <AipanDivider id="div-hero" />
 
       {/* 3. UTTARAKHAND CULTURAL VIBRANCE: KUMAON AIPAN & GARHWALI TRADITIONS */}
-      <section style={{ padding: '5rem 0', background: 'var(--bg-primary)', position: 'relative' }}>
+      <section style={{ padding: '3.5rem 0 5rem 0', background: 'var(--bg-primary)', position: 'relative' }}>
         <div className="container">
           
           <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
@@ -273,77 +284,86 @@ export default function HomePage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '28px' }}>
             
             {/* Pillar 1: Aipan Lagna Chauki */}
-            <div className="aipan-card" style={{ padding: '32px' }}>
-              <AipanCorner position="top-left" />
-              <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '18px' }}>
-                <AipanChauki size={54} />
-                <div>
-                  <h3 style={{ margin: 0, fontSize: '1.25rem', color: '#FAF8F2' }}>Aipan Lagna Chauki</h3>
-                  <span style={{ fontSize: '0.75rem', color: 'var(--gold)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-                    Kumaoni Sacred Art
-                  </span>
+            <div className="aipan-card" style={{ padding: 0, overflow: 'hidden' }}>
+              <AipanBorder height={16} id="pillar-1-top" />
+              <div style={{ padding: '28px', position: 'relative' }}>
+                <AipanCorner position="top-left" />
+                <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '18px' }}>
+                  <AipanChauki size={54} />
+                  <div>
+                    <h3 style={{ margin: 0, fontSize: '1.25rem', color: '#FAF8F2' }}>Aipan Lagna Chauki</h3>
+                    <span style={{ fontSize: '0.75rem', color: 'var(--gold)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                      Kumaoni Sacred Art
+                    </span>
+                  </div>
                 </div>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', lineHeight: 1.65, margin: '0 0 16px 0' }}>
+                  Drawn by the matrons of the family using natural <em>Geru</em> clay and <em>Biswar</em> rice paste. From <strong>Dhuli Arghya</strong> to <strong>Achaman Chauki</strong>, each motif invokes blessings of Mahalakshmi and Lord Ganesha.
+                </p>
+                <Link href="/kundli" style={{ color: 'var(--gold)', fontSize: '0.85rem', fontWeight: 600, textDecoration: 'none' }}>
+                  Explore 36 Guna Milan Reports →
+                </Link>
               </div>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', lineHeight: 1.65, margin: '0 0 16px 0' }}>
-                Drawn by the matrons of the family using natural <em>Geru</em> clay and <em>Biswar</em> rice paste. From <strong>Dhuli Arghya</strong> to <strong>Achaman Chauki</strong>, each motif invokes blessings of Mahalakshmi and Lord Ganesha.
-              </p>
-              <Link href="/kundli" style={{ color: 'var(--gold)', fontSize: '0.85rem', fontWeight: 600, textDecoration: 'none' }}>
-                Explore 36 Guna Milan Reports →
-              </Link>
             </div>
 
             {/* Pillar 2: Garhwali Royal Heritage */}
-            <div className="aipan-card" style={{ padding: '32px' }}>
-              <AipanCorner position="top-left" />
-              <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '18px' }}>
-                <TehriNathEmblem size={54} />
-                <div>
-                  <h3 style={{ margin: 0, fontSize: '1.25rem', color: '#FAF8F2' }}>Garhwali Tehri Heritage</h3>
-                  <span style={{ fontSize: '0.75rem', color: 'var(--gold)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-                    Royal Ornaments & Culture
-                  </span>
+            <div className="aipan-card" style={{ padding: 0, overflow: 'hidden' }}>
+              <AipanBorder height={16} id="pillar-2-top" />
+              <div style={{ padding: '28px', position: 'relative' }}>
+                <AipanCorner position="top-left" />
+                <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '18px' }}>
+                  <TehriNathEmblem size={54} />
+                  <div>
+                    <h3 style={{ margin: 0, fontSize: '1.25rem', color: '#FAF8F2' }}>Garhwali Tehri Heritage</h3>
+                    <span style={{ fontSize: '0.75rem', color: 'var(--gold)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                      Royal Ornaments & Culture
+                    </span>
+                  </div>
                 </div>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', lineHeight: 1.65, margin: '0 0 16px 0' }}>
+                  Adorned with the majestic <strong>Tehri Nath</strong>, Hansuli, and Guloband. Resonating with the auspicious notes of <em>Dhol-Damau</em>, <em>Ransingha</em>, and soulful Mangal geet echoing across misty Himalayan vales.
+                </p>
+                <Link href="/matches" style={{ color: 'var(--gold)', fontSize: '0.85rem', fontWeight: 600, textDecoration: 'none' }}>
+                  Browse Garhwali Profiles →
+                </Link>
               </div>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', lineHeight: 1.65, margin: '0 0 16px 0' }}>
-                Adorned with the majestic <strong>Tehri Nath</strong>, Hansuli, and Guloband. Resonating with the auspicious notes of <em>Dhol-Damau</em>, <em>Ransingha</em>, and soulful Mangal geet echoing across misty Himalayan vales.
-              </p>
-              <Link href="/matches" style={{ color: 'var(--gold)', fontSize: '0.85rem', fontWeight: 600, textDecoration: 'none' }}>
-                Browse Garhwali Profiles →
-              </Link>
             </div>
 
             {/* Pillar 3: Himalayan Destination Weddings */}
-            <div className="aipan-card" style={{ padding: '32px' }}>
-              <AipanCorner position="top-left" />
-              <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '18px' }}>
-                <div
-                  style={{
-                    width: '54px',
-                    height: '54px',
-                    borderRadius: '50%',
-                    background: 'rgba(122, 31, 29, 0.4)',
-                    border: '1.5px solid var(--gold)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '1.6rem',
-                  }}
-                >
-                  🏔️
+            <div className="aipan-card" style={{ padding: 0, overflow: 'hidden' }}>
+              <AipanBorder height={16} id="pillar-3-top" />
+              <div style={{ padding: '28px', position: 'relative' }}>
+                <AipanCorner position="top-left" />
+                <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '18px' }}>
+                  <div
+                    style={{
+                      width: '54px',
+                      height: '54px',
+                      borderRadius: '50%',
+                      background: 'rgba(122, 31, 29, 0.4)',
+                      border: '1.5px solid var(--gold)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '1.6rem',
+                    }}
+                  >
+                    🏔️
+                  </div>
+                  <div>
+                    <h3 style={{ margin: 0, fontSize: '1.25rem', color: '#FAF8F2' }}>Himalayan Wedding Venues</h3>
+                    <span style={{ fontSize: '0.75rem', color: 'var(--gold)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                      Jim Corbett to Mussoorie
+                    </span>
+                  </div>
                 </div>
-                <div>
-                  <h3 style={{ margin: 0, fontSize: '1.25rem', color: '#FAF8F2' }}>Himalayan Wedding Venues</h3>
-                  <span style={{ fontSize: '0.75rem', color: 'var(--gold)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-                    Jim Corbett to Mussoorie
-                  </span>
-                </div>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', lineHeight: 1.65, margin: '0 0 16px 0' }}>
+                  Exchange sacred vows with panoramic snow-capped Himalayan ridges as your Mandap backdrop. Connect with certified luxury wedding planners, royal hill resorts, and candid cinematographers.
+                </p>
+                <Link href="/vendors" style={{ color: 'var(--gold)', fontSize: '0.85rem', fontWeight: 600, textDecoration: 'none' }}>
+                  Discover Wedding Venues →
+                </Link>
               </div>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', lineHeight: 1.65, margin: '0 0 16px 0' }}>
-                Exchange sacred vows with panoramic snow-capped Himalayan ridges as your Mandap backdrop. Connect with certified luxury wedding planners, royal hill resorts, and candid cinematographers.
-              </p>
-              <Link href="/vendors" style={{ color: 'var(--gold)', fontSize: '0.85rem', fontWeight: 600, textDecoration: 'none' }}>
-                Discover Wedding Venues →
-              </Link>
             </div>
 
           </div>
@@ -351,8 +371,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Decorative Aipan Strip */}
-      <AipanBorderStrip height={16} />
+      {/* Decorative Aipan Divider */}
+      <AipanDivider id="div-cultural" />
 
       {/* 4. VERIFIED ECOSYSTEM STATS */}
       <section style={{ padding: '4.5rem 0', background: 'var(--bg-secondary)' }}>
@@ -416,7 +436,7 @@ export default function HomePage() {
       </section>
 
       {/* Bottom Aipan Border Strip */}
-      <AipanBorderStrip height={20} />
+      <AipanBorder height={24} id="page-bottom" />
 
     </div>
   );

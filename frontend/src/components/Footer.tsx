@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { AipanBorderStrip, TehriNathEmblem, AipanChauki } from './AipanPatterns';
+import { AipanBorder, AipanBorderStrip, TehriNathEmblem, AipanChauki } from './AipanPatterns';
 
 export default function Footer() {
   return (
@@ -13,7 +13,7 @@ export default function Footer() {
       }}
     >
       {/* Decorative Aipan Strip along Top of Footer */}
-      <AipanBorderStrip height={18} />
+      <AipanBorder height={20} id="footer-top-border" />
 
       <div className="container" style={{ padding: '4rem 1.5rem 2rem 1.5rem' }}>
         <div
@@ -54,11 +54,11 @@ export default function Footer() {
                 marginBottom: '1.5rem',
               }}
             >
-              Rooted in the sacred traditions of Kumaoni Aipan (ऐपण) and Garhwali royal culture. Dedicated to solemnizing lifelong bonds in Devbhoomi Uttarakhand and worldwide.
+              Rooted in the timeless sacred rituals of Devbhoomi Uttarakhand, authentic Vedic Ashta-Koota harmony, and Garhwali royal culture. Dedicated to solemnizing lifelong bonds across India and worldwide.
             </p>
             <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-              <span className="badge badge-pahadi">🎨 Kumaoni Aipan Heritage</span>
-              <span className="badge badge-gold">👑 Garhwali Tehri Parampara</span>
+              <span className="badge badge-pahadi">🪔 Sacred Vedic Parampara</span>
+              <span className="badge badge-gold">👑 Royal Tehri Heritage</span>
             </div>
           </div>
 

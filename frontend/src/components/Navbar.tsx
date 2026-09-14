@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import HealthBadge from './HealthBadge';
 import { useAuth } from '../context/AuthContext';
-import { TehriNathEmblem, AipanChauki } from './AipanPatterns';
+import { TehriNathEmblem, AipanChauki, AipanBorder } from './AipanPatterns';
 
 export default function Navbar() {
   const { user, logout } = useAuth();
@@ -22,13 +22,7 @@ export default function Navbar() {
       }}
     >
       {/* Top Aipan Sacred Border Strip Accent */}
-      <div
-        style={{
-          height: '4px',
-          background: 'linear-gradient(90deg, #7A1F1D 0%, #E5B842 20%, #FAF8F2 50%, #E5B842 80%, #7A1F1D 100%)',
-          width: '100%',
-        }}
-      />
+      <AipanBorder height={14} id="nav-top-border" />
 
       <div
         className="container"

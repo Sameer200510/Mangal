@@ -160,8 +160,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Dedicated Kumaoni Aipan Card (Terracotta Geru Texture) */
 .aipan-card {
-  background: linear-gradient(135deg, rgba(122, 31, 29, 0.28) 0%, rgba(16, 21, 29, 0.95) 50%, rgba(74, 16, 14, 0.4) 100%);
-  border: 1.5px solid rgba(250, 248, 242, 0.2);
+  background: linear-gradient(135deg, rgba(122, 31, 29, 0.32) 0%, rgba(16, 21, 29, 0.96) 50%, rgba(74, 16, 14, 0.45) 100%);
+  border: 1.5px solid rgba(250, 248, 242, 0.28);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-aipan);
   position: relative;
@@ -174,17 +174,38 @@ h1, h2, h3, h4, h5, h6 {
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #E5B842 0%, #FAF8F2 25%, #7A1F1D 50%, #FAF8F2 75%, #E5B842 100%);
+  height: 5px;
+  background: linear-gradient(90deg, #7A1F1D 0%, #E5B842 20%, #FAF8F2 35%, #7A1F1D 50%, #FAF8F2 65%, #E5B842 80%, #7A1F1D 100%);
+  z-index: 2;
+}
+
+.aipan-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #7A1F1D 0%, #FAF8F2 50%, #7A1F1D 100%);
+  opacity: 0.6;
+  z-index: 2;
+}
+
+/* Double-ruled Sacred Aipan Frame with Rice-Flour Inset */
+.aipan-frame-accent {
+  border: 1.5px solid rgba(250, 248, 242, 0.35);
+  box-shadow: inset 0 0 0 4px rgba(122, 31, 29, 0.3), inset 0 0 0 5px rgba(229, 184, 66, 0.25);
 }
 
 /* Authentic Aipan Rice-Flour Border Strip (Bel Pattern) */
 .aipan-border-strip {
-  height: 18px;
+  height: 20px;
   background-color: var(--geru-base);
-  background-image: radial-gradient(circle at 10px 9px, #FAF8F2 2px, transparent 2.5px),
-                    radial-gradient(circle at 30px 9px, #E5B842 1.5px, transparent 2px);
-  background-size: 40px 18px;
+  background-image: radial-gradient(circle at 10px 10px, #FAF8F2 2px, transparent 2.5px),
+                    radial-gradient(circle at 20px 5px, #FAF8F2 1.2px, transparent 1.6px),
+                    radial-gradient(circle at 20px 15px, #FAF8F2 1.2px, transparent 1.6px),
+                    radial-gradient(circle at 30px 10px, #E5B842 2px, transparent 2.5px);
+  background-size: 40px 20px;
   border-top: 1.5px solid #FAF8F2;
   border-bottom: 1.5px solid #FAF8F2;
 }

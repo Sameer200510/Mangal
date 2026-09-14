@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useAuth } from '../../context/AuthContext';
-import { AipanCorner, TehriNathEmblem } from '../../components/AipanPatterns';
+import { AipanCorner, TehriNathEmblem, AipanBorder } from '../../components/AipanPatterns';
 
 export default function MatchesPage() {
   const { user, token } = useAuth();
@@ -170,6 +170,7 @@ export default function MatchesPage() {
                     transition: 'transform 0.3s ease, box-shadow 0.3s ease',
                   }}
                 >
+                  <AipanBorder height={14} id={`mc-top-${profile.id}`} />
                   <AipanCorner position="top-left" />
                   <AipanCorner position="top-right" />
 
@@ -287,6 +288,7 @@ export default function MatchesPage() {
                       </button>
                     </div>
                   </div>
+                  <AipanBorder height={12} id={`mc-bot-${profile.id}`} />
                 </div>
               );
             })}

@@ -6,7 +6,7 @@ import {
   ManglikStatus,
   FamilyType,
   DietPreference,
-} from '../enums.js';
+} from '../enums';
 
 export const basicInfoSchema = z.object({
   gender: z.nativeEnum(Gender),

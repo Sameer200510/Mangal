@@ -1,4 +1,4 @@
-import { UserRole } from './enums.js';
+import { UserRole } from './enums';
 
 export interface ApiResponse<T = unknown> {
   success: boolean;

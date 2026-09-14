@@ -7,6 +7,7 @@ import { requestLogger } from './middleware/requestLogger.js';
 import { globalRateLimiter } from './middleware/rateLimiter.js';
 import { errorHandler, ApiError } from './middleware/errorHandler.js';
 import healthRouter from './routes/health.js';
+import authRouter from './modules/auth/auth.routes.js';
 
 export function createApp(): Express {
   const app = express();
@@ -53,6 +54,9 @@ export function createApp(): Express {
   // 7. Health & Diagnostic Endpoints (available at both root and api prefix)
   app.use('/health', healthRouter);
   app.use(`${env.API_PREFIX}/health`, healthRouter);
+
+  // 8. Authentication Module Routes
+  app.use(`${env.API_PREFIX}/auth`, authRouter);
 
   // Root Welcome Endpoint
   app.get('/', (_req: Request, res: Response) => {

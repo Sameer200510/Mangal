@@ -5,7 +5,7 @@ services:
     runtime: node
     plan: free
     region: oregon
-    buildCommand: corepack enable && pnpm install --no-frozen-lockfile && pnpm --filter backend run db:generate && pnpm --filter backend run build
+    buildCommand: corepack enable && pnpm install --no-frozen-lockfile --prod=false && pnpm --filter backend run db:generate && pnpm --filter backend run build
     startCommand: corepack enable && pnpm --filter backend run db:deploy && pnpm --filter backend start
     healthCheckPath: /health/live
     envVars:
@@ -42,7 +42,7 @@ services:
     runtime: node
     plan: free
     region: oregon
-    buildCommand: corepack enable && pnpm install --no-frozen-lockfile && pnpm --filter frontend run build
+    buildCommand: corepack enable && pnpm install --no-frozen-lockfile --prod=false && pnpm --filter frontend run build
     startCommand: corepack enable && pnpm --filter frontend start
     envVars:
       - key: NODE_VERSION

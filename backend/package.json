@@ -30,7 +30,10 @@
     "jsonwebtoken": "^9.0.2",
     "pino": "^9.6.0",
     "pino-http": "^10.4.0",
+    "prisma": "^6.4.1",
     "socket.io": "^4.8.1",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3",
     "zod": "^3.24.2"
   },
   "devDependencies": {
@@ -38,9 +41,6 @@
     "@types/express": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.9",
     "@types/node": "^22.13.8",
-    "pino-pretty": "^13.0.0",
-    "prisma": "^6.4.1",
-    "tsx": "^4.19.3",
-    "typescript": "^5.7.3"
+    "pino-pretty": "^13.0.0"
   }
 }
